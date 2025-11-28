@@ -66,10 +66,11 @@ export async function apiFormData<T>(
 }
 
 export const authApi = {
-  login: (id: string, password: string) =>
+  // userSe: GNR(일반회원), ENT(기업회원), USR(업무사용자/관리자)
+  login: (id: string, password: string, userSe: string = 'USR') =>
     api<LoginResponse>('/auth/login-jwt', {
       method: 'POST',
-      body: JSON.stringify({ id, password }),
+      body: JSON.stringify({ id, password, userSe }),
     }),
   logout: () => api('/auth/logout'),
 };

@@ -7,8 +7,9 @@ import { authApi } from '@/lib/api';
 
 export default function LoginPage() {
   const router = useRouter();
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
+  const [id, setId] = useState('admin');
+  const [password, setPassword] = useState('test1234');
+  const [userSe, setUserSe] = useState('USR'); // USR: 관리자/업무사용자, GNR: 일반회원
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -18,7 +19,7 @@ export default function LoginPage() {
     setError('');
 
     try {
-      const response = await authApi.login(id, password);
+      const response = await authApi.login(id, password, userSe);
 
       if (response.resultCode === '200' || response.resultCode === 200) {
         // JWT 토큰 저장
@@ -49,6 +50,32 @@ export default function LoginPage() {
 
         <div className="bg-white rounded-lg shadow-md p-8">
           <form onSubmit={handleLogin} className="space-y-6">
+            {/* 사용자 유형 선택 */}
+            <div className="flex gap-4">
+              <label className="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="userSe"
+                  value="USR"
+                  checked={userSe === 'USR'}
+                  onChange={(e) => setUserSe(e.target.value)}
+                  className="mr-2"
+                />
+                <span className="text-gray-700">관리자/직원</span>
+              </label>
+              <label className="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="userSe"
+                  value="GNR"
+                  checked={userSe === 'GNR'}
+                  onChange={(e) => setUserSe(e.target.value)}
+                  className="mr-2"
+                />
+                <span className="text-gray-700">일반회원</span>
+              </label>
+            </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 아이디
