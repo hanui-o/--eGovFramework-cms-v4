@@ -4,7 +4,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { Eye, EyeOff, X } from 'lucide-react';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { useFormFieldOptional } from './form-field';
+import { useFormFieldOptional } from '@/components/hanui/form-field';
 
 const inputVariants = cva(
   // Input 스타일 variants (cva로 타입 안전한 variant 관리)
@@ -53,14 +53,14 @@ const inputVariants = cva(
         md: [
           'h-12',
           'px-4',
-          'text-[17px]',
+          'text-krds-body-md',
           'rounded-md',
           'leading-[150%]',
         ].join(' '), // 48px - KRDS body-md (기본)
         lg: [
           'h-14',
           'px-4',
-          'text-[19px]',
+          'text-krds-body-lg',
           'rounded-lg',
           'leading-[150%]',
         ].join(' '), // 56px - KRDS body-lg

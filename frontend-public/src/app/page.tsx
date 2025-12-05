@@ -4,15 +4,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { authApi } from '@/api';
-import {
-  Section,
-  Container,
-  SectionHeading,
-  Button,
-  Card,
-  CardBody,
-  Heading,
-} from '@/components/hanui';
+import { Container, Heading, Section } from 'lucide-react';
+import { Button } from '@/components/hanui/button';
+import { SectionHeading } from '@/components/hanui/section-header';
+import { Card, CardBody } from '@/components/hanui/card';
 
 interface User {
   id: string;
@@ -54,7 +49,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       {/* 헤더 */}
       <header className="bg-krds-white shadow-sm border-b border-krds-gray-20">
-        <Container maxWidth="xl" className="py-4">
+        <Container className="py-4">
           <div className="flex justify-between items-center">
             <Link
               href="/"
@@ -95,8 +90,8 @@ export default function Home() {
       </header>
 
       {/* 히어로 섹션 */}
-      <Section as="section" padding="page-section" background="gray">
-        <Container maxWidth="xl">
+      <Section>
+        <Container>
           <SectionHeading
             level="h1"
             title="전자정부 표준프레임워크 CMS"
@@ -107,8 +102,8 @@ export default function Home() {
       </Section>
 
       {/* 기능 카드 섹션 */}
-      <Section as="main" padding="content-area" background="white">
-        <Container maxWidth="xl">
+      <Section>
+        <Container>
           <SectionHeading
             level="h2"
             title="주요 기능"
@@ -119,7 +114,7 @@ export default function Home() {
             {/* 게시판 카드 */}
             <Card variant="outlined" padding="md" className="hover:shadow-md transition-shadow">
               <CardBody className="space-y-4">
-                <Heading level="h3" className="text-krds-gray-95">
+                <Heading className="text-krds-gray-95">
                   게시판
                 </Heading>
                 <p className="text-krds-gray-70 leading-relaxed">
@@ -137,7 +132,7 @@ export default function Home() {
             {/* 마이페이지 카드 */}
             <Card variant="outlined" padding="md" className="hover:shadow-md transition-shadow">
               <CardBody className="space-y-4">
-                <Heading level="h3" className="text-krds-gray-95">
+                <Heading className="text-krds-gray-95">
                   마이페이지
                 </Heading>
                 <p className="text-krds-gray-70 leading-relaxed">
@@ -155,7 +150,7 @@ export default function Home() {
             {/* 관리자 카드 */}
             <Card variant="outlined" padding="md" className="hover:shadow-md transition-shadow">
               <CardBody className="space-y-4">
-                <Heading level="h3" className="text-krds-gray-95">
+                <Heading className="text-krds-gray-95">
                   관리자
                 </Heading>
                 <p className="text-krds-gray-70 leading-relaxed">
@@ -176,8 +171,8 @@ export default function Home() {
       </Section>
 
       {/* 개발자 정보 섹션 */}
-      <Section as="section" padding="content-area" background="gray">
-        <Container maxWidth="xl">
+      <Section>
+        <Container>
           <Card variant="shadow" padding="lg">
             <CardBody>
               <SectionHeading level="h2" title="개발자 정보" />
@@ -217,7 +212,7 @@ export default function Home() {
 
       {/* 푸터 */}
       <footer className="bg-krds-gray-95 text-krds-gray-40 py-8 mt-auto">
-        <Container maxWidth="xl">
+        <Container>
           <p className="text-center">
             © 2024 eGovFramework CMS. All rights reserved.
           </p>

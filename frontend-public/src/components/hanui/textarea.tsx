@@ -3,13 +3,13 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { useFormFieldOptional } from './form-field';
+import { useFormFieldOptional } from '@/components/hanui/form-field';
 
 // Textarea 스타일 variants
 const textareaVariants = cva(
   [
     'flex w-full rounded-md font-medium',
-    'min-h-36 px-4 py-2 text-[17px] leading-[150%]',
+    'min-h-36 px-4 py-2 text-krds-body-md leading-[150%]',
     'transition-colors resize-none',
     'placeholder:text-krds-gray-50',
     'focus-visible:outline-none',

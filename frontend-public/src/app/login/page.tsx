@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { authApi } from '@/api';
+import { useAuthStore } from '@/stores';
 import {
   Section,
   Container,
@@ -23,37 +23,18 @@ export default function LoginPage() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [userSe, setUserSe] = useState('GNR');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+
+  // Zustand Store
+  const { login, isLoading, error, clearError } = useAuthStore();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
+    clearError();
 
-    try {
-      const response = await authApi.login(id, password, userSe);
+    const success = await login(id, password, userSe);
 
-      if (response.resultCode === '200' || response.resultCode === 200) {
-        const token = (response as unknown as { jToken?: string }).jToken;
-        if (token) {
-          localStorage.setItem('jToken', token);
-          localStorage.setItem(
-            'user',
-            JSON.stringify(
-              (response as unknown as { resultVO?: object }).resultVO
-            )
-          );
-        }
-        router.push('/');
-      } else {
-        setError(response.resultMessage || '로그인에 실패했습니다.');
-      }
-    } catch (err) {
-      setError('서버 연결에 실패했습니다.');
-      console.error(err);
-    } finally {
-      setLoading(false);
+    if (success) {
+      router.push('/');
     }
   };
 
@@ -135,7 +116,7 @@ export default function LoginPage() {
                 type="submit"
                 variant="primary"
                 size="lg"
-                loading={loading}
+                loading={isLoading}
                 className="w-full"
               >
                 로그인
